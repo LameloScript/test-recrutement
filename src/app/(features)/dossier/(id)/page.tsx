@@ -6,7 +6,7 @@ import { statutFromScore } from "~/utils/scoring";
 
 export default function DossierDetailPage() {
   const { id } = useParams();
-  const { dossiers, getScore, getDecision, getEngagement, scorerDossier, validerDossier, loading, error } = useDossiers();
+  const { dossiers, getScore, getDecision, getEngagement, scorerDossier, validerDossier, suspendreDossier, loading, error } = useDossiers();
   const [motif, setMotif] = useState("");
   const [enCours, setEnCours] = useState(false);
   const [notifie, setNotifie] = useState(false);
@@ -62,6 +62,14 @@ export default function DossierDetailPage() {
       motif || (resultat === "ACCEPTE" ? "Score suffisant" : "Score insuffisant"),
       "validateur@compagnie.ci"
     );
+    setEnCours(false);
+    setNotifie(true);
+  }
+
+  async function handleSuspendre() {
+    setEnCours(true);
+    await new Promise((r) => setTimeout(r, 500));
+    suspendreDossier(dossier!.id, motif || "Complément d'information requis");
     setEnCours(false);
     setNotifie(true);
   }
@@ -172,6 +180,13 @@ export default function DossierDetailPage() {
                     className="flex-1 bg-red-600 text-white rounded-lg py-2 text-sm font-medium hover:bg-red-700 transition disabled:opacity-50"
                   >
                     {enCours ? "Envoi..." : "Refuser"}
+                  </button>
+                  <button
+                    onClick={handleSuspendre}
+                    disabled={enCours}
+                    className="flex-1 bg-gray-500 text-white rounded-lg py-2 text-sm font-medium hover:bg-gray-600 transition disabled:opacity-50"
+                  >
+                    {enCours ? "Envoi..." : "Suspendre"}
                   </button>
                 </div>
               </>

@@ -6,7 +6,7 @@ export default function ValidationPage() {
   const { dossiers, getScore, loading, error } = useDossiers();
 
   const dossiersAValider = dossiers.filter(
-    (d) => d.statut === "EN_ATTENTE" || d.statut === "EN_COURS"
+    (d) => d.statut === "EN_ATTENTE" || d.statut === "EN_COURS" || d.statut === "SUSPENDU"
   );
 
   if (loading) {

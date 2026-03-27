@@ -131,17 +131,6 @@ export default function DossierListePage() {
           placeholder="0"
           className="border rounded-lg px-3 py-1 text-sm bg-background w-20"
         />
-        <span className="text-sm text-muted-foreground ml-2">Trier par</span>
-        <select
-          value={tri}
-          onChange={(e) => setTri(e.target.value as TriOption)}
-          className="border rounded-lg px-3 py-1 text-sm bg-background"
-        >
-          <option value="date_desc">Date (récent)</option>
-          <option value="date_asc">Date (ancien)</option>
-          <option value="score_desc">Score (haut)</option>
-          <option value="score_asc">Score (bas)</option>
-        </select>
         {(dateDebut || dateFin || scoreMin || recherche) && (
           <button
             onClick={() => { setDateDebut(""); setDateFin(""); setScoreMin(""); setRecherche(""); }}

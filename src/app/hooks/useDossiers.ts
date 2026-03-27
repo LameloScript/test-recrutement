@@ -13,6 +13,7 @@ interface DossiersState {
   ajouterDossier: (dossier: Dossier) => void;
   scorerDossier: (dossierId: string) => void;
   validerDossier: (dossierId: string, resultat: "ACCEPTE" | "REFUSE", motif: string, validePar: string) => void;
+  suspendreDossier: (dossierId: string, motif: string) => void;
   getScore: (dossierId: string) => Score | undefined;
   getDecision: (dossierId: string) => Decision | undefined;
   getEngagement: (dossierId: string) => EngagementDelai | undefined;
@@ -129,6 +130,19 @@ export function useDossiersProvider(): DossiersState {
     });
   }
 
+  function suspendreDossier(dossierId: string, motif: string) {
+    setDossiers((prev) =>
+      prev.map((d) => d.id === dossierId ? { ...d, statut: "SUSPENDU" as const } : d)
+    );
+
+    console.log(`[CORE Assurance] Dossier suspendu :`, {
+      type: "SUSPENSION_DOSSIER",
+      dossierId,
+      motif,
+      date: new Date().toISOString(),
+    });
+  }
+
   function getScore(dossierId: string) {
     return scores.find((s) => s.dossierId === dossierId);
   }
@@ -141,7 +155,7 @@ export function useDossiersProvider(): DossiersState {
     return engagementDelais.find((e) => e.dossierId === dossierId);
   }
 
-  return { dossiers, scores, decisions, engagementDelais, loading, error, ajouterDossier, scorerDossier, validerDossier, getScore, getDecision, getEngagement };
+  return { dossiers, scores, decisions, engagementDelais, loading, error, ajouterDossier, scorerDossier, validerDossier, suspendreDossier, getScore, getDecision, getEngagement };
 }
 
 /**

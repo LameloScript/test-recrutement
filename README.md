@@ -129,13 +129,13 @@ Souscripteur                  Systeme                     Validateur           C
 ### Installation
 
 ```bash
-bun install
+npm install
 ```
 
 ### Developpement
 
 ```bash
-bun run dev
+npm run dev
 ```
 
 L'application est disponible sur `http://localhost:5173`.
@@ -143,7 +143,7 @@ L'application est disponible sur `http://localhost:5173`.
 ### Build de production
 
 ```bash
-bun run build
+npm run build
 ```
 
 ### Docker
