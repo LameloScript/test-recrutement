@@ -1,0 +1,128 @@
+{
+  "dossiers": [
+    {
+      "id": "d001",
+      "reference": "DOS-2025-001",
+      "statut": "EN_COURS",
+      "typeDemande": "COUVERTURE_FACULTATIVE",
+      "dateDepot": "2025-05-10",
+      "montantDemande": 300000,
+      "dureeMois": 6,
+      "antecedantSinistre": false,
+      "description": "Demande de couverture facultative pour risque industriel"
+    },
+    {
+      "id": "d002",
+      "reference": "DOS-2025-002",
+      "statut": "ACCEPTE",
+      "typeDemande": "PLACEMENT_REAS",
+      "dateDepot": "2025-05-12",
+      "montantDemande": 150000,
+      "dureeMois": 12,
+      "antecedantSinistre": false,
+      "description": "Placement en réassurance pour portefeuille automobile"
+    },
+    {
+      "id": "d003",
+      "reference": "DOS-2025-003",
+      "statut": "REFUSE",
+      "typeDemande": "COTATION",
+      "dateDepot": "2025-05-14",
+      "montantDemande": 800000,
+      "dureeMois": 24,
+      "antecedantSinistre": true,
+      "description": "Cotation pour programme de réassurance catastrophe naturelle"
+    },
+    {
+      "id": "d004",
+      "reference": "DOS-2025-004",
+      "statut": "EN_ATTENTE",
+      "typeDemande": "COUVERTURE_FACULTATIVE",
+      "dateDepot": "2025-05-16",
+      "montantDemande": 600000,
+      "dureeMois": 18,
+      "antecedantSinistre": false,
+      "description": "Couverture facultative pour risque maritime"
+    }
+  ],
+  "scores": [
+    {
+      "id": "s001",
+      "valeur": 72,
+      "calculeLe": "2025-05-10T14:30:00Z",
+      "reglesAppliques": ["BASE_100", "MONTANT_OK", "DUREE_OK", "SINISTRE_OK"],
+      "dossierId": "d001"
+    },
+    {
+      "id": "s002",
+      "valeur": 85,
+      "calculeLe": "2025-05-12T09:15:00Z",
+      "reglesAppliques": ["BASE_100", "MONTANT_OK", "DUREE_OK", "SINISTRE_OK"],
+      "dossierId": "d002"
+    },
+    {
+      "id": "s003",
+      "valeur": 28,
+      "calculeLe": "2025-05-14T11:00:00Z",
+      "reglesAppliques": ["BASE_100", "MONTANT_SUP_500K", "DUREE_SUP_12", "SINISTRE_OUI"],
+      "dossierId": "d003"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "dec002",
+      "resultat": "ACCEPTE",
+      "motif": "Score élevé, risque acceptable",
+      "decideLe": "2025-05-13T08:30:00Z",
+      "validePar": "validateur@compagnie.ci",
+      "dossierId": "d002"
+    },
+    {
+      "id": "dec003",
+      "resultat": "REFUSE",
+      "motif": "Score insuffisant, antécédent de sinistre",
+      "decideLe": "2025-05-15T14:00:00Z",
+      "validePar": "validateur@compagnie.ci",
+      "dossierId": "d003"
+    }
+  ],
+  "engagementDelais": [
+    {
+      "id": "ed001",
+      "delaiContractuelJours": 30,
+      "dateLimite": "2025-06-10",
+      "statutRespect": "EN_COURS",
+      "dossierId": "d001"
+    },
+    {
+      "id": "ed002",
+      "delaiContractuelJours": 30,
+      "dateLimite": "2025-06-12",
+      "statutRespect": "RESPECTE",
+      "dossierId": "d002"
+    },
+    {
+      "id": "ed003",
+      "delaiContractuelJours": 30,
+      "dateLimite": "2025-06-14",
+      "statutRespect": "RESPECTE",
+      "dossierId": "d003"
+    }
+  ],
+  "users": [
+    {
+      "id": "u001",
+      "email": "souscripteur@compagnie.ci",
+      "motDePasse": "hashed_password",
+      "role": "SOUSCRIPTEUR",
+      "creeLe": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "u002",
+      "email": "validateur@compagnie.ci",
+      "motDePasse": "hashed_password",
+      "role": "VALIDATEUR",
+      "creeLe": "2025-01-01T00:00:00Z"
+    }
+  ]
+}
